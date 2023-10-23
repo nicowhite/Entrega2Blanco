@@ -36,10 +36,14 @@ capturarPuntajes();
 console.log(estudiantes);
 
 
+// calcula el puntaje total de los estudiantes
 const puntajeTotal = estudiantes.reduce(function (acumulado, estudiante) {
     return acumulado + estudiante.puntaje;
 }, 0);
 
+
+
+// calcula el puntaje promedio 
 const puntajePromedio = puntajeTotal / estudiantes.length;
 console.log(`El puntaje promedio fué: ${puntajePromedio}`);
 
