@@ -1,37 +1,45 @@
-alert("Recuerda que tienes 120 minutos para hacer el examen!");
-let nombre = prompt("Cual es tu nombre?");
-let nota = Number(prompt("Que nota te sacaste?"));
 
-
-function calificacion() {
-  switch (true) {
-    case nota >= 90 && nota <= 100:
-      alert(`Hola ${nombre}! Tu puntuación es A, Sobresaliente!`);
-      break;
-    case nota >= 80 && nota <= 89:
-      alert(`Hola ${nombre}! Tu puntuación es B, Notable!`);
-      break;
-    case nota >= 70 && nota <= 79:
-      alert(`Hola ${nombre}! Tu puntuación es C, Suficiente!`);
-      break;
-    case nota >= 60 && nota <= 69:
-      alert(`Hola ${nombre}! Tu puntuación es D, Insuficiente!`);
-      break;
-    case nota >= 1 && nota <= 59:
-      alert(`Hola ${nombre}! Tu puntuación es F, Insuficiente!`);
-      break;
-    default:
-      alert(`Esa nota no es correcta`);
-  }
+function Estudiante(nombre, puntaje) {
+    return {
+        nombre: nombre,
+        puntaje: puntaje
+    };
 }
 
-calificacion();
+const estudiantes = [];
 
-for (let i = 120; i >= 0; i--) {
-  console.log(i + " minutos");
+
+// funcion que captura el nombre y el puntaje de la prueba del estudiante
+
+function capturarPuntajes() {
+    while (true) {
+        const nombreEstudiante = prompt("Ingrese el nombre del Estudiante (o clickee en Cancelar para salir):");
+
+        if (nombreEstudiante === null) {
+            break;
+        }
+
+        const testPuntaje = prompt(`Ingresa la nota de ${nombreEstudiante}:`);
+        const puntaje = parseFloat(testPuntaje);
+
+        if (!isNaN(puntaje) && puntaje >= 0 && puntaje <= 100) {
+            const estudiante = Estudiante(nombreEstudiante, puntaje);
+            estudiantes.push(estudiante);
+        } else {
+            alert("Por favor, ingrese un puntaje válido entre 0 y 100.");
+        }
+    }
 }
-console.log("El tiempo de la prueba se ha acabado");
+
+capturarPuntajes();
+
+console.log(estudiantes);
 
 
+const puntajeTotal = estudiantes.reduce(function (acumulado, estudiante) {
+    return acumulado + estudiante.puntaje;
+}, 0);
 
+const puntajePromedio = puntajeTotal / estudiantes.length;
+console.log(`El puntaje promedio fué: ${puntajePromedio}`);
 
