@@ -19,7 +19,7 @@ function capturarPuntajes() {
       break;
     } else if (nombreEstudiante === "") {
       alert("Ingrese un nombre valido");
-      break;
+      continue;
     }
 
     const testPuntaje = prompt(`Ingresa la nota de ${nombreEstudiante}:`);
